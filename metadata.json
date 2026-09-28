@@ -1,0 +1,6 @@
+{
+  "name": "Fed Poly Ukana - Hostel Management System",
+  "description": "Official Web-Based Hostel Management Portal for Federal Polytechnic Ukana, Essien Udim, Akwa Ibom State. Handles student registration, hostel applications, room allocation, payment verification, maintenance tracking, and administrative reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
