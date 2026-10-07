@@ -224,11 +224,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                             Switch Demo Account
                           </p>
                           <button
-                            onClick={() => handleSwitchUserRole('user-student-1')}
+                            onClick={() => handleSwitchUserRole('user-student-2')}
                             className="w-full text-left px-2 py-1.5 rounded text-xs text-slate-700 hover:bg-emerald-50 flex items-center justify-between"
                           >
-                            <span>Akpan Emmanuel (Student)</span>
-                            {currentUser.id === 'user-student-1' && (
+                            <span>Udoh Blessing (Student)</span>
+                            {currentUser.id === 'user-student-2' && (
                               <Check className="w-3.5 h-3.5 text-emerald-600" />
                             )}
                           </button>

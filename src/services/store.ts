@@ -92,18 +92,32 @@ class HostelStore {
   constructor() {
     this.users = loadFromStorage(STORAGE_KEYS.USERS, SEED_USERS);
     this.profiles = loadFromStorage(STORAGE_KEYS.STUDENT_PROFILES, SEED_STUDENT_PROFILES);
-    this.hostels = loadFromStorage(STORAGE_KEYS.HOSTELS, SEED_HOSTELS);
-    this.rooms = loadFromStorage(STORAGE_KEYS.ROOMS, SEED_ROOMS);
-    this.bedSpaces = loadFromStorage(STORAGE_KEYS.BED_SPACES, SEED_BED_SPACES);
+    
+    // Ensure only Female Hostels are loaded
+    const loadedHostels = loadFromStorage(STORAGE_KEYS.HOSTELS, SEED_HOSTELS);
+    const hasMaleHostels = loadedHostels.some((h: Hostel) => h.gender === 'Male' || h.id.includes('male'));
+    if (hasMaleHostels) {
+      this.hostels = SEED_HOSTELS;
+      this.rooms = SEED_ROOMS;
+      this.bedSpaces = SEED_BED_SPACES;
+      this.allocations = SEED_ALLOCATIONS;
+      this.applications = SEED_APPLICATIONS;
+    } else {
+      this.hostels = loadedHostels;
+      this.rooms = loadFromStorage(STORAGE_KEYS.ROOMS, SEED_ROOMS);
+      this.bedSpaces = loadFromStorage(STORAGE_KEYS.BED_SPACES, SEED_BED_SPACES);
+      this.applications = loadFromStorage(STORAGE_KEYS.APPLICATIONS, SEED_APPLICATIONS);
+      this.allocations = loadFromStorage(STORAGE_KEYS.ALLOCATIONS, SEED_ALLOCATIONS);
+    }
+
     this.sessions = loadFromStorage(STORAGE_KEYS.ACADEMIC_SESSIONS, SEED_ACADEMIC_SESSIONS);
-    this.applications = loadFromStorage(STORAGE_KEYS.APPLICATIONS, SEED_APPLICATIONS);
-    this.allocations = loadFromStorage(STORAGE_KEYS.ALLOCATIONS, SEED_ALLOCATIONS);
     this.payments = loadFromStorage(STORAGE_KEYS.PAYMENTS, SEED_PAYMENTS);
     this.maintenance = loadFromStorage(STORAGE_KEYS.MAINTENANCE, SEED_MAINTENANCE);
     this.announcements = loadFromStorage(STORAGE_KEYS.ANNOUNCEMENTS, SEED_ANNOUNCEMENTS);
     this.notifications = loadFromStorage(STORAGE_KEYS.NOTIFICATIONS, SEED_NOTIFICATIONS);
     this.auditLogs = loadFromStorage(STORAGE_KEYS.AUDIT_LOGS, SEED_AUDIT_LOGS);
-    this.currentUserId = loadFromStorage(STORAGE_KEYS.CURRENT_USER_ID, 'user-student-1');
+    this.currentUserId = loadFromStorage(STORAGE_KEYS.CURRENT_USER_ID, 'user-student-2');
+    this.saveAll();
   }
 
   private saveAll() {

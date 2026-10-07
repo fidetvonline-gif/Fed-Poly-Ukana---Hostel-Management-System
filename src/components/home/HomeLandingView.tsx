@@ -145,15 +145,15 @@ export const HomeLandingView: React.FC<HomeLandingViewProps> = ({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
           <div>
             <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <Building className="w-5 h-5 text-emerald-800" /> Poly Residence Halls
+              <Building className="w-5 h-5 text-emerald-800" /> Poly Residence Hall
             </h2>
             <p className="text-xs text-slate-600">
-              Male & Female student accommodation options on Fed Poly Ukana campus
+              Female student accommodation facility on Fed Poly Ukana main campus
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-1 max-w-2xl gap-6">
           {hostels.map((hostel) => (
             <div
               key={hostel.id}
